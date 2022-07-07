@@ -55,7 +55,6 @@ def pet_detail_page(pet_id):
     """
     pet = Pet.query.get_or_404(pet_id)
     form = EditPetFrom(obj=pet)
-    print(form.notes)
 
     if form.validate_on_submit():
         pet.photo_url = form.photo_url.data
