@@ -1,18 +1,30 @@
 {%extends 'base.html'%} {% block title %}Home Page{% endblock %} {% block
-content %}
-<h1 class="pt-2">Pet Adoption Agency</h1>
+content %} {% for msg in get_flashed_messages()%}
+<p class="alert-success">{{msg}}</p>
+{% endfor %}
+<h1 class="pt-2 display-1 text-center">Pet Adoption Agency</h1>
 <div class="row justify-content-md-center">
   {% for pet in pets %}
   <div class="col-2 mt-3">
-    <div class="h-75">
-      <img
-        src="{{pet.photo_url}}"
-        alt="{{pet.name}} image"
-        class="img-fluid img-thumbnail h-75"
-      />
-    </div>
-    <div class="pet-info">
-      {{pet.name}} {% if pet.available %}
+    {% if pet.photo_url %}
+
+    <img
+      src="{{pet.photo_url}}"
+      alt="{{pet.name}} image"
+      class="img-fluid img-thumbnail h-75"
+    />
+
+    {% else %}
+    <img
+      src="https://images.unsplash.com/photo-1634738881327-50dd958f557a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fG5vJTIwaW1hZ2V8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60"
+      alt="No Image Available"
+      class="img-fluid img-thumbnail h-75"
+    />
+    {% endif %}
+    <div>
+      <a href="/{{pet.id}}">{{pet.name}}</a>
+
+      {% if pet.available %}
       <span class="text-info"> is available! </span> {% endif %}
     </div>
   </div>
