@@ -6,6 +6,7 @@ from models import db, connect_db, Pet
 from forms import AddPetForm, EditPetFrom
 
 
+
 app = Flask(__name__)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///pet_adoption_agency'
@@ -54,6 +55,8 @@ def pet_detail_page(pet_id):
     """
     pet = Pet.query.get_or_404(pet_id)
     form = EditPetFrom(obj=pet)
+    print(form.notes)
+
     if form.validate_on_submit():
         pet.photo_url = form.photo_url.data
         pet.notes= form.notes.data

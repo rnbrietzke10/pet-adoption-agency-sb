@@ -17,4 +17,5 @@ class EditPetFrom(FlaskForm):
     """Form for editing pet info"""
     photo_url = StringField("Photo URL", validators=[Optional(), URL(message="Please enter a valid URL.")])
     notes = StringField("Notes", validators=[Optional()])
-    available = SelectField("Pet Availability", choices=[(True, "Available"), (False, "Unavailable")], validators=[InputRequired(message="Please Select an availability for the pet.")], coerce=lambda x: x == 'True')
+    # available = SelectField("Pet Availability", choices=[(True, "Available"), (False, "Unavailable")], validators=[InputRequired(message="Please Select an availability for the pet.")], coerce=lambda x: x == 'True')
+    available = BooleanField("Available?")

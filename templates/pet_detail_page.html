@@ -33,21 +33,27 @@ content %} {% for msg in get_flashed_messages()%}
     <p class="bg-success rounded text-white px-2 py-1">{{msg}}</p>
     {% endfor %}
     <h2>Edit Pet Information</h2>
-    <form method="POST">
-      {{ form.hidden_tag() }} {% for field in form if field.widget.input_type !=
-      'hidden'%}
-      <div class="form-group">
-        {{field.label}} {{field(class_="form-control")}} {% for err in
-        field.errors %}
-        <small class="form-text text-danger"> {{err}} </small>
+    <div>
+      <form method="POST">
+        {{ form.hidden_tag() }} {% for field in form if field.widget.input_type
+        != 'hidden'%}
+        <div class="form-group">
+          {% if form.input_type == "checkbox" %} {{ field.label}} {{
+          field(class_="form-check-input") }} {% else %} {{ field.label}} {{
+          field(class_="form-control") }} {% endif %}
+          <span>
+            {% for err in field.errors %}
+            <small class="form-text text-danger"> {{err}} </small>
+            {% endfor %}
+          </span>
+        </div>
         {% endfor %}
-      </div>
-      {% endfor %}
-      <div class="btn-container">
-        <a href="/" class="btn btn-secondary btn-md">Go Back</a>
-        <button class="btn btn-info btn-md">Edit Info</button>
-      </div>
-    </form>
+        <div class="btn-container">
+          <a href="/" class="btn btn-secondary btn-md">Go Back</a>
+          <button class="btn btn-info btn-md">Edit Info</button>
+        </div>
+      </form>
+    </div>
   </div>
 </div>
 
